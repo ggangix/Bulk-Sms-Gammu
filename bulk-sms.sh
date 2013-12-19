@@ -20,7 +20,9 @@ cat "$number_list" | while read NUMBER
 do
 echo "$NUMBER" > /tmp/sms.tmp
 echo "--------------------------------------------------------------------"	
+count=$((count+1))
 echo "Sending to $NUMBER"
+echo "Queue message number: $count"
 appendstring=`randomstring`
 echo "$message $appendstring" | gammu -c /etc/gammu-smsdrc --sendsms TEXT $NUMBER
 for a in `seq 1 $wait_time`; do
